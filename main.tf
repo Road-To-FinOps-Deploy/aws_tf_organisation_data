@@ -17,6 +17,7 @@ resource "aws_lambda_function" "organisation_data" {
     variables = {
       BUCKET_NAME    = var.bucket_name
       TAGS = var.tags
+      MANAGMENT_ACCOUNT_ID = var.management_account_id
     }
   }
 }

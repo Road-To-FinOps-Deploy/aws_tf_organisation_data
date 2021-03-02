@@ -15,10 +15,11 @@ if isinstance(o, datetime.datetime):
 def list_accounts():
    bucket = os.environ["BUCKET_NAME"] #Using enviroment varibles below the lambda will use your S3 bucket
    tags_check = os.environ["TAGS"]
+   account_id = os.environ["MANAGMENT_ACCOUNT_ID"]
 
    sts_connection = boto3.client('sts')
    acct_b = sts_connection.assume_role(
-         RoleArn="arn:aws:iam::(account id):role/OrganizationLambdaAccessRole",
+         RoleArn=f"arn:aws:iam::{account_id}:role/OrganizationLambdaAccessRole",
          RoleSessionName="cross_acct_lambda"
    )
             

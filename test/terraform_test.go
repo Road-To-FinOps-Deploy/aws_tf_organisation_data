@@ -25,12 +25,15 @@ func TestTerraformAwsExample(t *testing.T) {
 	// website::tag::1::Configure Terraform setting path to Terraform code, EC2 instance name, and AWS Region.
 	terraformOptions := &terraform.Options{
 		// The path to where our Terraform code is located
-		TerraformDir: "../../aws_tf_eip_cleaner",
+		TerraformDir: "../../aws_tf_organisation_data",
 		
 		// Variables to pass to our Terraform code using -var options
 		
 		Vars: map[string]interface{}{
 			"function_prefix": "test",
+			"bucket_name": "test",
+			"tags": "test",
+			"management_account_id": "test",
 		},
 		/*
 		// Environment variables to set when running Terraform

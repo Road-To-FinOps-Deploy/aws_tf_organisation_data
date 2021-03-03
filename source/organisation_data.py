@@ -9,8 +9,8 @@ import json
 import datetime
 
 def myconverter(o):
-if isinstance(o, datetime.datetime):
-   return o.__str__()
+   if isinstance(o, datetime.datetime):
+      return o.__str__()
 
 def list_accounts():
    bucket = os.environ["BUCKET_NAME"] #Using enviroment varibles below the lambda will use your S3 bucket

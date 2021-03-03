@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_role_for_organisation" {
-  name               = "${var.function_prefix}_role_for_organisation"
+  name               = "LambdaOrgRole"
   assume_role_policy = file("${path.module}/policies/LambdaAssume.pol")
 }
 

@@ -11,7 +11,7 @@ module "aws_tf_eip_cleaner" {
   source = "/aws_tf_eip_cleaner"
   bucket_name = "Name-of-Bucket"
   tags = "BU,Env"
-  management_account_id = "1234567890"
+  management_account_role = "1234567890"
 }
 ```
 

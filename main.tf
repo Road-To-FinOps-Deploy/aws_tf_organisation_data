@@ -18,6 +18,7 @@ resource "aws_lambda_function" "organisation_data" {
       BUCKET_NAME    = var.bucket_name
       TAGS = var.tags
       MANAGMENT_ACCOUNT_ROLE = var.management_account_role_arn
+      REGION = var.region
     }
   }
 }

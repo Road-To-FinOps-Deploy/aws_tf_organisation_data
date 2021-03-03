@@ -21,3 +21,9 @@ variable "management_account_role_arn" {
   type = string
   description = "Role ARN that you created in your managment account so the lambda can assume role into managment"
 }
+
+variable "region" {
+  type = string
+  description = "Region you are deploying in"
+  default = "eu-west-1"
+}

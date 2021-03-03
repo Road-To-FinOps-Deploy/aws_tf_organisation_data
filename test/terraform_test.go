@@ -33,7 +33,7 @@ func TestTerraformAwsExample(t *testing.T) {
 			"function_prefix": "test",
 			"bucket_name": "test",
 			"tags": "test",
-			"management_account_id": "test",
+			"management_account_role_arn": "arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole",
 		},
 		/*
 		// Environment variables to set when running Terraform

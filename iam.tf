@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_role_for_organisation" {
-  name               = "${var.function_prefix}_role_for_organisation"
+  name               = "LambdaOrgRole"
   assume_role_policy = file("${path.module}/policies/LambdaAssume.pol")
 }
 
@@ -48,7 +48,7 @@ resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
             "Sid": "assume",
             "Effect": "Allow",
             "Action": "sts:AssumeRole",
-            "Resource": "arn:aws:iam::${var.management_account_id}:role/OrganizationLambdaAccessRole"
+            "Resource": "${var.management_account_role_arn}"
         }
     ]
 }

@@ -6,7 +6,7 @@ data "archive_file" "organisation_data_zip" {
 
 resource "aws_lambda_function" "organisation_data" {
   filename         = "${path.module}/source/organisation_data.zip"
-  function_name    = "${var.function_prefix}_organisation_cleanup"
+  function_name    = "${var.function_prefix}organisation_data"
   role             = aws_iam_role.iam_role_for_organisation.arn
   handler          = "organisation_data.lambda_handler"
   source_code_hash = data.archive_file.organisation_data_zip.output_base64sha256
@@ -17,7 +17,8 @@ resource "aws_lambda_function" "organisation_data" {
     variables = {
       BUCKET_NAME    = var.bucket_name
       TAGS = var.tags
-      MANAGMENT_ACCOUNT_ID = var.management_account_id
+      MANAGMENT_ACCOUNT_ROLE = var.management_account_role_arn
+      REGION = var.region
     }
   }
 }
@@ -28,6 +29,7 @@ resource "aws_lambda_permission" "allow_cloudwatch_organisation_data" {
   function_name = aws_lambda_function.organisation_data.function_name
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.organisation_data_cloudwatch_rule.arn
+  source_account = data.aws_caller_identity.current.account_id
 }
 
 resource "aws_cloudwatch_event_rule" "organisation_data_cloudwatch_rule" {
@@ -41,3 +43,5 @@ resource "aws_cloudwatch_event_target" "organisation_data_lambda" {
   arn       = aws_lambda_function.organisation_data.arn
 }
 
+data "aws_caller_identity" "current" {
+}

@@ -9,17 +9,18 @@ import json
 import datetime
 
 def myconverter(o):
-if isinstance(o, datetime.datetime):
-   return o.__str__()
+   if isinstance(o, datetime.datetime):
+      return o.__str__()
 
 def list_accounts():
    bucket = os.environ["BUCKET_NAME"] #Using enviroment varibles below the lambda will use your S3 bucket
    tags_check = os.environ["TAGS"]
-   account_id = os.environ["MANAGMENT_ACCOUNT_ID"]
+   region = os.environ["REGION"]
+   role_arn = os.environ["MANAGMENT_ACCOUNT_ROLE"]
 
    sts_connection = boto3.client('sts')
    acct_b = sts_connection.assume_role(
-         RoleArn=f"arn:aws:iam::{account_id}:role/OrganizationLambdaAccessRole",
+         RoleArn=f"{role_arn}",
          RoleSessionName="cross_acct_lambda"
    )
             
@@ -58,7 +59,7 @@ def list_accounts():
    print("respose gathered")
 
    try:
-         s3 = boto3.client('s3', '(Region)',
+         s3 = boto3.client('s3', region,
                         config=Config(s3={'addressing_style': 'path'}))
          s3.upload_file(
             '/tmp/org.json', bucket, "organisation-data/org.json") #uploading the file with the data to s3

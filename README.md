@@ -11,7 +11,7 @@ module "aws_tf_eip_cleaner" {
   source = "/aws_tf_eip_cleaner"
   bucket_name = "Name-of-Bucket"
   tags = "BU,Env"
-  management_account_role = "arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole"
+  management_account_role_arn = "arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole"
 }
 ```
 
@@ -20,7 +20,7 @@ module "aws_tf_eip_cleaner" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | bucket\_name | Name of existsing s3 bucket to put data in | string | `""` | yes |
-| management\_account\_role | IAM Role ARN in you managemant account which holds your org data. Use the Managment files in the polcies folder to set these up | string | `"arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole"` | yes |
+| management\_account\_role\_arn | IAM Role ARN in you managemant account which holds your org data. Use the Managment files in the polcies folder to set these up | string | `"arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole"` | yes |
 | tags | Account level tags you wish to collect | string | `""` | yes |
 | eip\_cleanup\_cron | Rate expression for when to run the review of eips| string | `"cron(0 7 ? * MON-FRI *)"` | no 
 | function\_prefix | Prefix for the name of the lambda created | string | `""` | no |

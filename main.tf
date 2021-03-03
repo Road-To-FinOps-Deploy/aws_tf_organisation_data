@@ -28,6 +28,7 @@ resource "aws_lambda_permission" "allow_cloudwatch_organisation_data" {
   function_name = aws_lambda_function.organisation_data.function_name
   principal     = "events.amazonaws.com"
   source_arn    = aws_cloudwatch_event_rule.organisation_data_cloudwatch_rule.arn
+  source_account = data.aws_caller_identity.current.account_id
 }
 
 resource "aws_cloudwatch_event_rule" "organisation_data_cloudwatch_rule" {
@@ -41,3 +42,5 @@ resource "aws_cloudwatch_event_target" "organisation_data_lambda" {
   arn       = aws_lambda_function.organisation_data.arn
 }
 
+data "aws_caller_identity" "current" {
+}

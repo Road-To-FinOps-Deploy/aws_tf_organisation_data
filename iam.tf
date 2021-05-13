@@ -29,7 +29,18 @@ resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
                 "organizations:ListAccounts",
                 "organizations:ListCreateAccountStatus",
                 "organizations:DescribeOrganization",
-                "organizations:ListTagsForResource"
+                "organizations:ListTagsForResource",
+                "organizations:ListAccountsForParent",
+                "organizations:ListRoots",
+                "organizations:ListCreateAccountStatus",
+                "organizations:ListAccounts",
+                "organizations:ListTagsForResource",
+                "organizations:DescribeOrganization",
+                "organizations:DescribeOrganizationalUnit",
+                "organizations:DescribeAccount",
+                "organizations:ListParents",
+                "organizations:ListOrganizationalUnitsForParent",
+                "organizations:ListChildren"
             ],
             "Resource":"*"
         },

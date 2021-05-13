@@ -15,9 +15,9 @@ resource "aws_lambda_function" "organisation_data" {
   timeout          = "150"
   environment {
     variables = {
-      BUCKET_NAME    = var.bucket_name
+      BUCKET_NAME    = aws_s3_bucket.destination_bucket.id
       TAGS = var.tags
-      MANAGMENT_ACCOUNT_ROLE = var.management_account_role_arn
+      MANAGMENT_ACCOOUNT_ID = var.management_id
       REGION = var.region
     }
   }
@@ -34,7 +34,7 @@ resource "aws_lambda_permission" "allow_cloudwatch_organisation_data" {
 
 resource "aws_cloudwatch_event_rule" "organisation_data_cloudwatch_rule" {
   name                = "organisation_data_lambda_trigger"
-  schedule_expression = var.organisation_cleanup_cron
+  schedule_expression = var.organisation_cron
 }
 
 resource "aws_cloudwatch_event_target" "organisation_data_lambda" {
@@ -44,4 +44,8 @@ resource "aws_cloudwatch_event_target" "organisation_data_lambda" {
 }
 
 data "aws_caller_identity" "current" {
+}
+
+resource "aws_s3_bucket" "destination_bucket" {
+  bucket = "destination_bucket"
 }

@@ -9,9 +9,9 @@ The script schedules the collection of aws organisation data
 ```
 module "aws_tf_organisation_data" {
   source = "/aws_tf_organisation_data"
-  bucket_name = "Name-of-Bucket"
+  bucket_name = "Name-of-Bucket-to-create"
   tags = "BU,Env"
-  management_account_role_arn = "arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole"
+  management_account_id = "12345678901"
 }
 ```
 

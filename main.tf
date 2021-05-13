@@ -15,20 +15,20 @@ resource "aws_lambda_function" "organisation_data" {
   timeout          = "150"
   environment {
     variables = {
-      BUCKET_NAME    = aws_s3_bucket.destination_bucket.id
-      TAGS = var.tags
+      BUCKET_NAME           = aws_s3_bucket.destination_bucket.id
+      TAGS                  = var.tags
       MANAGMENT_ACCOOUNT_ID = var.management_account_id
-      REGION = var.region
+      REGION                = var.region
     }
   }
 }
 
 resource "aws_lambda_permission" "allow_cloudwatch_organisation_data" {
-  statement_id  = "AllowExecutionFromCloudWatch"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.organisation_data.function_name
-  principal     = "events.amazonaws.com"
-  source_arn    = aws_cloudwatch_event_rule.organisation_data_cloudwatch_rule.arn
+  statement_id   = "AllowExecutionFromCloudWatch"
+  action         = "lambda:InvokeFunction"
+  function_name  = aws_lambda_function.organisation_data.function_name
+  principal      = "events.amazonaws.com"
+  source_arn     = aws_cloudwatch_event_rule.organisation_data_cloudwatch_rule.arn
   source_account = data.aws_caller_identity.current.account_id
 }
 

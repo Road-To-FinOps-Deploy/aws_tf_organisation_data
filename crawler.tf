@@ -15,7 +15,7 @@ EOF
 
 
 
-esource "aws_iam_role_policy" "AWS-Organization-Data-Glue-Crawler" {
+resource "aws_iam_role_policy" "AWS-Organization-Data-Glue-Crawler" {
   name = "AWS-Organization-Data-Glue-Crawler"
   role = aws_iam_role.AWS-Organization-Data-Glue-Crawler.id
 

@@ -8,24 +8,24 @@ variable "function_prefix" {
 }
 
 variable "destination_bucket" {
-  type = string
+  type        = string
   description = "Bucket the data will be placed into"
 }
 
 variable "tags" {
-  type = string
+  type        = string
   description = "List of tags from your Organisation you would like to include separated by a comma"
 }
 
 variable "management_account_id" {
-  type = string
+  type        = string
   description = "Account id of your managment account so the lambda can assume role into managment"
 }
 
 variable "region" {
-  type = string
+  type        = string
   description = "Region you are deploying in"
-  default = "eu-west-1"
+  default     = "eu-west-1"
 }
 
 variable "cur_database" {

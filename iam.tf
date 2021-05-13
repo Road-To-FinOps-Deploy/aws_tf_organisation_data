@@ -59,7 +59,7 @@ resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
             "Sid": "assume",
             "Effect": "Allow",
             "Action": "sts:AssumeRole",
-            "Resource": "${var.management_account_id}"
+            "Resource": "arn:aws:iam::${var.management_account_id}:role/OrganizationLambdaAccessRole"
         }
     ]
 }

@@ -7,8 +7,8 @@ The script schedules the collection of aws organisation data
 ## Usage
 
 ```
-module "aws_tf_eip_cleaner" {
-  source = "/aws_tf_eip_cleaner"
+module "aws_tf_organisation_data" {
+  source = "/aws_tf_organisation_data"
   bucket_name = "Name-of-Bucket"
   tags = "BU,Env"
   management_account_role_arn = "arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole"

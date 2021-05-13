@@ -17,7 +17,7 @@ resource "aws_lambda_function" "organisation_data" {
     variables = {
       BUCKET_NAME    = aws_s3_bucket.destination_bucket.id
       TAGS = var.tags
-      MANAGMENT_ACCOOUNT_ID = var.management_id
+      MANAGMENT_ACCOOUNT_ID = var.management_account_id
       REGION = var.region
     }
   }

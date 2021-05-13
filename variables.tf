@@ -17,7 +17,7 @@ variable "tags" {
   description = "List of tags from your Organisation you would like to include separated by a comma"
 }
 
-variable "management_id" {
+variable "management_account_id" {
   type = string
   description = "Account id of your managment account so the lambda can assume role into managment"
 }

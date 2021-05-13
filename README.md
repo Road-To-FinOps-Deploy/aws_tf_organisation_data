@@ -9,7 +9,7 @@ The script schedules the collection of aws organisation data
 ```
 module "aws_tf_organisation_data" {
   source = "/aws_tf_organisation_data"
-  bucket_name = "Name-of-Bucket-to-create"
+  destination_bucket = "Name-of-Bucket-to-create"
   tags = "BU,Env"
   management_account_id = "12345678901"
 }
@@ -19,7 +19,7 @@ module "aws_tf_organisation_data" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| destination\_name | Name of existsing s3 bucket to put data in | string | `""` | yes |
+| destination\_bucket | Name of existsing s3 bucket to put data in | string | `""` | yes |
 | management\_account\_id | Managemant account ID holds your org data | string | `""` | yes |
 | tags | Account level tags you wish to collect | string | `""` | yes |
 | organisation\_cron | Rate expression for when to run the review of eips| string | `"ccron(0 6 ? * MON *)"` | no 

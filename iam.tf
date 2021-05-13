@@ -5,7 +5,7 @@ resource "aws_iam_role" "iam_role_for_organisation" {
 
 
 resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
-  name = "${var.function_prefix}_policy_for_organisation"
+  name = "iam_policy_for_organisation"
   role = aws_iam_role.iam_role_for_organisation.id
 
   policy = <<EOF
@@ -20,7 +20,7 @@ resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
                 "s3:DeleteObjectVersion",
                 "s3:DeleteObject"
             ],
-            "Resource":"arn:aws:s3:::${var.bucket_name}/*"
+            "Resource":"arn:aws:s3:::${var.destination_bucket}/*"
         },
         {
             "Sid":"OrgData",

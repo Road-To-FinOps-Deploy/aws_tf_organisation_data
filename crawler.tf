@@ -1,8 +1,8 @@
 resource "aws_glue_crawler" "organization" {
   database_name = "${var.cur_database}"
-  name          = "organization"
+  name          = "OrgGlueCrawler"
   role          = aws_iam_role.AWS-Organization-Data-Glue-Crawler.arn
-  schedule      = "cron(0 6 ? * MON *)"
+  schedule      = "cron(0 8 ? * MON *)"
 
   s3_target {
     path = "s3://${aws_s3_bucket.destination_bucket.id}/organisation-data"

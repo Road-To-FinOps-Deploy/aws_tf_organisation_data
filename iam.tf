@@ -5,7 +5,7 @@ resource "aws_iam_role" "iam_role_for_organisation" {
 
 
 resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
-  name = "iam_policy_for_organisation"
+  name = "LambdaOrgPolicy"
   role = aws_iam_role.iam_role_for_organisation.id
 
   policy = <<EOF

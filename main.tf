@@ -6,7 +6,7 @@ data "archive_file" "organisation_data_zip" {
 
 resource "aws_lambda_function" "organisation_data" {
   filename         = "${path.module}/source/organisation_data.zip"
-  function_name    = "${var.function_prefix}organisation_data"
+  function_name    = "${var.function_prefix}Lambda_Org_Data"
   role             = aws_iam_role.iam_role_for_organisation.arn
   handler          = "organisation_data.lambda_handler"
   source_code_hash = data.archive_file.organisation_data_zip.output_base64sha256

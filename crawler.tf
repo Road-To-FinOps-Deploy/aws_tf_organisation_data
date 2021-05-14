@@ -1,6 +1,6 @@
 resource "aws_glue_crawler" "organization" {
   database_name = "${var.cur_database}"
-  name          = "OrgGlueCrawler"
+  name          = "${var.function_prefix}OrgGlueCrawler"
   role          = aws_iam_role.AWS-Organization-Data-Glue-Crawler.arn
   schedule      = "cron(0 8 ? * MON *)"
 
@@ -16,7 +16,7 @@ EOF
 
 
 resource "aws_iam_role_policy" "AWS-Organization-Data-Glue-Crawler" {
-  name = "AWS-Organization-Data-Glue-Crawler"
+  name = "${var.function_prefix}AWS-Organization-Data-Glue-Crawler"
   role = aws_iam_role.AWS-Organization-Data-Glue-Crawler.id
 
   policy = <<EOF
@@ -41,7 +41,7 @@ EOF
 }
 
 resource "aws_iam_role" "AWS-Organization-Data-Glue-Crawler" {
-  name = "AWS-Organization-Data-Glue-Crawler"
+  name = "${var.function_prefix}AWS-Organization-Data-Glue-Crawler"
 
   assume_role_policy = <<EOF
 {

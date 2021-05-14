@@ -33,7 +33,7 @@ resource "aws_lambda_permission" "allow_cloudwatch_organisation_data" {
 }
 
 resource "aws_cloudwatch_event_rule" "organisation_data_cloudwatch_rule" {
-  name                = "organisation_data_lambda_trigger"
+  name                = "${var.function_prefix}organisation_data_lambda_trigger"
   schedule_expression = var.organisation_cron
 }
 

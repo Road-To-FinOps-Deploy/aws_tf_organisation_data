@@ -1,11 +1,11 @@
 resource "aws_iam_role" "iam_role_for_organisation" {
-  name               = "LambdaOrgRole"
+  name               = "${var.function_prefix}LambdaOrgRole"
   assume_role_policy = file("${path.module}/policies/LambdaAssume.pol")
 }
 
 
 resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
-  name = "LambdaOrgPolicy"
+  name = "${var.function_prefix}LambdaOrgPolicy"
   role = aws_iam_role.iam_role_for_organisation.id
 
   policy = <<EOF

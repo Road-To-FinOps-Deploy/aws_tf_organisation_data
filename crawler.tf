@@ -23,18 +23,28 @@ resource "aws_iam_role_policy" "AWS-Organization-Data-Glue-Crawler" {
 {
 "Version": "2012-10-17",
 "Statement": [
-
     {
-    "Effect": "Allow",
-    "Action": [
-    "s3:GetObject",
-    "s3:PutObject"
-    ],
-    "Resource": [
-    "arn:aws:s3:::${aws_s3_bucket.destination_bucket.id}/*"
-    ]
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+        ],
+      "Resource": [
+        "arn:aws:s3:::${aws_s3_bucket.destination_bucket.id}/*"
+    ] 
+    }, 
+    {
+      "Sid":"Logs",
+      "Effect": "Allow",
+      "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams"
+      ],
+      "Resource": "arn:aws:logs:*:*:*"
     }
-    ]
+  ]
 }
 EOF
 

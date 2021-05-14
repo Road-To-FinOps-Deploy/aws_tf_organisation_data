@@ -70,7 +70,7 @@ EOF
 }
 
 data "aws_iam_policy" "GluePolicy" {
-  arn = "arn:aws:iam::aws:policy/AWSGlueServiceRole"
+  arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
 }
 
 resource "aws_iam_role_policy_attachment" "glue-role-policy-attach" {

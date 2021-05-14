@@ -9,9 +9,9 @@ The script schedules the collection of aws organisation data
 ```
 module "aws_tf_organisation_data" {
   source = "/aws_tf_organisation_data"
-  bucket_name = "Name-of-Bucket"
+  destination_bucket = "Name-of-Bucket-to-create"
   tags = "BU,Env"
-  management_account_role_arn = "arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole"
+  management_account_id = "12345678901"
 }
 ```
 
@@ -19,12 +19,15 @@ module "aws_tf_organisation_data" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| bucket\_name | Name of existsing s3 bucket to put data in | string | `""` | yes |
-| management\_account\_role\_arn | IAM Role ARN in you managemant account which holds your org data. Use the Managment files in the polcies folder to set these up. Example arn:aws:iam::12345678901:role/OrganizationLambdaAccessRole| string | `""` | yes |
+| destination\_bucket | Name of existsing s3 bucket to put data in | string | `""` | yes |
+| management\_account\_id | Managemant account ID holds your org data | string | `""` | yes |
 | tags | Account level tags you wish to collect | string | `""` | yes |
-| eip\_cleanup\_cron | Rate expression for when to run the review of eips| string | `"cron(0 7 ? * MON-FRI *)"` | no 
+| organisation\_cron | Rate expression for when to run the review of eips| string | `"ccron(0 6 ? * MON *)"` | no 
 | function\_prefix | Prefix for the name of the lambda created | string | `""` | no |
 | region | Region you are deploying in| string | `"eu-west-1"` | no |
+| cur_database | The name of the database with your CUR table| string | `"managementcur"` | no |
+| account | If you are deploying to Linked account do not need but if Management put in Management| string | `"Linked"` | no |
+
 
 
 

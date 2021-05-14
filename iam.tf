@@ -1,12 +1,12 @@
 resource "aws_iam_role" "iam_role_for_organisation" {
-  name               = "LambdaOrgRole"
+  name               = "${var.function_prefix}LambdaOrgRole"
   assume_role_policy = file("${path.module}/policies/LambdaAssume.pol")
 }
 
 
 resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
-  name   = "${var.function_prefix}_policy_for_organisation"
-  role   = aws_iam_role.iam_role_for_organisation.id
+  name = "${var.function_prefix}LambdaOrgPolicy"
+  role = aws_iam_role.iam_role_for_organisation.id
 
   policy = <<EOF
 {
@@ -20,7 +20,7 @@ resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
                 "s3:DeleteObjectVersion",
                 "s3:DeleteObject"
             ],
-            "Resource":"arn:aws:s3:::${var.bucket_name}/*"
+            "Resource":"arn:aws:s3:::${var.destination_bucket}/*"
         },
         {
             "Sid":"OrgData",
@@ -29,7 +29,18 @@ resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
                 "organizations:ListAccounts",
                 "organizations:ListCreateAccountStatus",
                 "organizations:DescribeOrganization",
-                "organizations:ListTagsForResource"
+                "organizations:ListTagsForResource",
+                "organizations:ListAccountsForParent",
+                "organizations:ListRoots",
+                "organizations:ListCreateAccountStatus",
+                "organizations:ListAccounts",
+                "organizations:ListTagsForResource",
+                "organizations:DescribeOrganization",
+                "organizations:DescribeOrganizationalUnit",
+                "organizations:DescribeAccount",
+                "organizations:ListParents",
+                "organizations:ListOrganizationalUnitsForParent",
+                "organizations:ListChildren"
             ],
             "Resource":"*"
         },
@@ -48,7 +59,7 @@ resource "aws_iam_role_policy" "iam_role_policy_for_organisation" {
             "Sid": "assume",
             "Effect": "Allow",
             "Action": "sts:AssumeRole",
-            "Resource": "${var.management_account_role_arn}"
+            "Resource": "arn:aws:iam::${var.management_account_id}:role/OrganizationLambdaAccessRole"
         }
     ]
 }

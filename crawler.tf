@@ -5,7 +5,7 @@ resource "aws_glue_crawler" "organization" {
   schedule      = "cron(0 8 ? * MON *)"
 
   s3_target {
-    path = "s3://${aws_s3_bucket.destination_bucket.id}/organisation-data"
+    path = "s3://${aws_s3_bucket.destination_bucket.id}/organisation-data/"
   }
 
   configuration = <<EOF

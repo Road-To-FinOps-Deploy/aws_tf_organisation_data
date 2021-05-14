@@ -69,3 +69,11 @@ resource "aws_iam_role" "AWS-Organization-Data-Glue-Crawler" {
 EOF
 }
 
+data "aws_iam_policy" "GluePolicy" {
+  arn = "arn:aws:iam::aws:policy/AWSGlueServiceRole"
+}
+
+resource "aws_iam_role_policy_attachment" "glue-role-policy-attach" {
+  role       = aws_iam_role.AWS-Organization-Data-Glue-Crawler.id
+  policy_arn = "${data.aws_iam_policy.GluePolicy.arn}"
+}

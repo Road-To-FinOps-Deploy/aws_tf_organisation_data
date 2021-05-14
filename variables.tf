@@ -12,6 +12,12 @@ variable "destination_bucket" {
   description = "Bucket the data will be placed into"
 }
 
+variable "account" {
+  type = string
+  default = "Linked"
+  description = "if linked not needed if Management account put in Management"
+}
+
 variable "tags" {
   type        = string
   description = "List of tags from your Organisation you would like to include separated by a comma"

@@ -1,6 +1,6 @@
 data "archive_file" "organisation_data_zip" {
   type        = "zip"
-  source_file = "${path.module}/source/organisation_data.py"
+  source_file = "${path.module}/source/${var.account}organisation_data.py"
   output_path = "${path.module}/source/organisation_data.zip"
 }
 

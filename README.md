@@ -26,6 +26,7 @@ module "aws_tf_organisation_data" {
 | function\_prefix | Prefix for the name of the lambda created | string | `""` | no |
 | region | Region you are deploying in| string | `"eu-west-1"` | no |
 | cur_database | The name of the database with your CUR table| string | `"managementcur"` | no |
+| account | If you are deploying to Linked account do not need but if Management put in Management| string | `"Linked"` | no |
 
 
 

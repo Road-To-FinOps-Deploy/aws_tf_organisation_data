@@ -97,10 +97,10 @@ def get_ou_ids(parent_id, client):
     )
 
     for page in iterator:
-    for ou in page['OrganizationalUnits']:
-        print(ou['Name'])
-        full_result[ou['Id']]=[]
-        full_result[ou['Id']].append(ou['Name'])
+        for ou in page['OrganizationalUnits']:
+            print(ou['Name'])
+            full_result[ou['Id']]=[]
+            full_result[ou['Id']].append(ou['Name'])
 
 
     return full_result
@@ -114,9 +114,9 @@ def get_acc_ids(parent_id,  client):
     )
 
     for page in iterator:
-    for acc in page['Accounts']:
-        print(acc['Id'])
-        full_result.append(acc['Id'])
+        for acc in page['Accounts']:
+            print(acc['Id'])
+            full_result.append(acc['Id'])
 
 
     return full_result

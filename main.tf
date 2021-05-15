@@ -11,8 +11,8 @@ resource "aws_lambda_function" "organisation_data" {
   handler          = "${var.account}organisation_data.lambda_handler"
   source_code_hash = data.archive_file.organisation_data_zip.output_base64sha256
   runtime          = "python3.6"
-  memory_size      = "512"
-  timeout          = "150"
+  memory_size      = var.memory_size
+  timeout          = var.timeout
   environment {
     variables = {
       BUCKET_NAME           = aws_s3_bucket.destination_bucket.id

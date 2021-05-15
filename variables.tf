@@ -37,3 +37,11 @@ variable "region" {
 variable "cur_database" {
   default = "managementcur"
 }
+
+variable "memory_size" {
+  default = "512"
+}
+
+variable "timeout" {
+  default = "150"
+}
